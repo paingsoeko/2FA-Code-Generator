@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SecureAuth - 2FA Generator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#4F46E5"/>
+          <path d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z" fill="#4F46E5"/>
+          <path d="M12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z" fill="#4F46E5"/>
+        </svg>
+        <h1>SecureAuth</h1>
+      </div>
+      <button id="toggleAdd" class="primary-btn">
+        Add
+      </button>
+    </header>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="timerBar"></div>
+    </div>
+
+    <div id="codes" class="codes-container">
+        <div>
+            <div class="label">${account.label}</div>
+            <div class="code">${code}</div>
+            <button class="copy-btn" data-code="${code}">Copy</button>
+          </div>
+          <button class="remove-btn" data-label="${account.label}">Remove</button>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#9CA3AF"/>
+        <path d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z" fill="#9CA3AF"/>
+        <path d="M12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z" fill="#9CA3AF"/>
+      </svg>
+      <p>No 2FA accounts added yet</p>
+      <button id="addFirstAccount" class="primary-btn">Add Your First Account</button>
+    </div>
+
+    <div class="footer">
+        <div class="action-buttons">
+            <button id="exportBtn" class="secondary-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 9H15V3H9V9H5L12 16L19 9Z" fill="currentColor"/>
+                <path d="M19 20H5V18H19V20Z" fill="currentColor"/>
+              </svg>
+              Export
+            </button>
+            <button id="importBtn" class="secondary-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 9H15V3H9V9H5L12 16L19 9Z" fill="currentColor"/>
+                <path d="M5 18H19V20H5V18Z" fill="currentColor"/>
+              </svg>
+              Import
+            </button>
+          </div>
+           <!-- Developer Info -->
+           <div class="text-center text-sm text-gray-500 mt-2">
+              Dev by <span class="font-semibold text-blue-500">KOPAING</span>
+          </div>
+    </div>
+
+    <form id="addForm" class="add-form hidden">
+      <div class="form-header">
+        <h2>Add New Account</h2>
+        <button type="button" id="cancelAdd" class="close-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#6B7280"/>
+          </svg>
+        </button>
+      </div>
+      <div class="input-group">
+        <label for="accountName">Account Name</label>
+        <input type="text" id="accountName" placeholder="e.g. Google, GitHub" required />
+      </div>
+      <div class="input-group">
+        <label for="secretKey">Secret Key</label>
+        <input type="text" id="secretKey" placeholder="Base32 secret key" required />
+      </div>
+      <button type="submit" class="primary-btn">Add Account</button>
+    </form>
+
+    <input type="file" id="importFile" class="hidden" accept="application/json" />
+
+  
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

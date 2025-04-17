@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "2FA Code Generator",
+    "version": "1.0",
+    "description": "Generate and manage 2FA TOTP codes.",
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    },
+    "permissions": ["storage"],
+    "icons": {
+      "128": "icon.png"
+    }
+  }
+  

@@ -1,0 +1,364 @@
+/* Modern CSS with improved design */
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary: #f3f4f6;
+    --secondary-hover: #e5e7eb;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --success: #10b981;
+    --text: #111827;
+    --text-light: #6b7280;
+    --border: #e5e7eb;
+    --bg: #f9fafb;
+    --card-bg: #ffffff;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    width: 360px;
+    min-height: 480px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    background-color: var(--card-bg);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .logo h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  
+  .time-remaining {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-light);
+    background-color: var(--secondary);
+    padding: 4px 8px;
+    border-radius: 20px;
+  }
+  
+  .progress-container {
+    width: 100%;
+    height: 4px;
+    background-color: var(--border);
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: var(--primary);
+    width: 100%;
+    transition: width 0.3s ease;
+  }
+  
+  .codes-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .code-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .code-content {
+    flex: 1;
+  }
+  
+  .label {
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .code {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    letter-spacing: 1px;
+  }
+  
+  .code-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+  }
+  
+  .copy-btn, .remove-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  
+  .copy-btn {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  .copy-btn:hover {
+    background-color: #2980b9;
+  }
+
+  
+  .account-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .account-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  
+  .account-code {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    color: var(--success);
+    letter-spacing: 1px;
+  }
+  
+  .copy-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-light);
+  }
+  
+  .copy-btn:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+  }
+  
+  .remove-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--text-light);
+  }
+  
+  .remove-btn:hover {
+    background-color: var(--secondary);
+    color: var(--danger);
+  }
+  
+  .empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    gap: 16px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  
+  .empty-state p {
+    color: var(--text-light);
+    font-size: 15px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    padding: 16px;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+  }
+  
+  .primary-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .secondary-btn {
+    background-color: var(--secondary);
+    color: var(--text);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 1;
+    transition: all 0.2s ease;
+  }
+  
+  .secondary-btn:hover {
+    background-color: var(--secondary-hover);
+  }
+  
+  .add-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--card-bg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+  }
+  
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .form-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    background-color: var(--secondary);
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  
+  .input-group input {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+  }
+  
+  .fab-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+  }
+  
+  .fab-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: rgb(173, 173, 173);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.footer p {
+    margin: 0;
+}
